@@ -1,0 +1,9 @@
+<template>
+  <require from="resources/elements/inputs/text-input.html"></require>
+
+  <text-input label="${label}" 
+              placeholder=${placeholder}
+              value.two-way="textValue"  
+              change.trigger="textInputChanged()">
+  </text-input>
+</template>

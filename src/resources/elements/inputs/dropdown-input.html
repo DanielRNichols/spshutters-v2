@@ -1,0 +1,17 @@
+<template>
+  <div class="form-group">
+    <label class="control-label">${label}</label>
+    <div class="input-group">
+      <input ref="valueInput" type="text" placeholder="${placeholder}" class="form-control dropdown-input" value.bind="selectedOption.label" readonly>
+      <div class="dropdown input-group-append">
+        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
+        </button>
+        <div class="dropdown-menu">
+          <template repeat.for="item of options">
+            <a class="dropdown-item" href="#" click.trigger="optionChanged(item.value)">${item.label}</a>
+          </template>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

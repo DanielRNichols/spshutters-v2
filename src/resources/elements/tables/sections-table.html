@@ -1,0 +1,27 @@
+<template>
+  <require from="resources/value-converters/fraction-format"></require>
+
+    <table class="resultsTable">
+      <thead>
+        <tr class="resultsTitle">
+          <th style.bind="titleStyle" colspan="${includeSubSectionWidth ? 5 : 4}">${title}</th>
+        </tr>
+        <tr class="resultsHeader">
+          <th style.bind="headerStyle">Name</th>
+          <th style.bind="headerStyle">Width</th>
+          <th style.bind="headerStyle" if.bind="includeSubSectionWidth">Sub Width</th>
+          <th style.bind="headerStyle">Height</th>
+          <th style.bind="headerStyle" class="colCount">Slats</th>
+        </tr>
+      </thead>
+      <tbody repeat.for="section of sectionsList">
+        <tr>
+          <td style.bind="cellStyle">${section.Name}</td>
+          <td style.bind="cellStyle">${section.Width | fractionFormat}</td>
+          <td style.bind="cellStyle" if.bind="includeSubSectionWidth">${section.SubSectionWidth | fractionFormat}</td>
+          <td style.bind="cellStyle">${section.Height | fractionFormat}</td>
+          <td style.bind="cellStyle" class="colCount">${section.SlatCount}</td>
+        </tr>
+      </tbody>
+    </table>
+</template>

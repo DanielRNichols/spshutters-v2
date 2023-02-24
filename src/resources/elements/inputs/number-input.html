@@ -1,0 +1,10 @@
+<template bindable="label, placeholder, value, min, max, step">
+  <div class="form-group">
+    <label for="numberInput" class="control-label">${label}</label>
+    <div>
+      <input type="number" placeholder="${placeholder}" min="${min}" max="${max}" step="${step}" class="form-control"
+             value.bind="value" id="numberInput">
+    </div>
+  </div>
+
+</template>

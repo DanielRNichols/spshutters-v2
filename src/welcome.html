@@ -1,0 +1,153 @@
+<template>
+  <require from="resources/elements/inputs/text-input.html"></require>
+  <require from="resources/elements/inputs/number-input.html"></require>
+  <require from="resources/elements/inputs/date-input.html"></require>
+
+  <require from="resources/elements/inputs/length-input"></require>
+  <require from="resources/elements/inputs/combo-input"></require>
+  <require from="resources/elements/inputs/dropdown-input"></require>
+
+  <section>
+    <h2>${heading}</h2>
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Test</h5>
+        <div class="row">
+          <div class="col-sm-3">
+            <text-input label="Text-Input:" value.two-way="textInputValue" change.trigger="textInputValueChanged()"></text-input>
+            <p>${textInputValue}</p>
+          </div>
+          <div class="col-sm-3">
+            <number-input label="Number-Input:" min="1" max="100" step="0.5"
+                          value.two-way="numberInputValue" 
+                          change.trigger="numberInputValueChanged()">
+            </number-input>
+            <p>${numberInputValue}</p>
+          </div>
+  
+          <div class="col-sm-3">
+              <length-input label="Length-Input:"
+                        value.two-way="lengthInputValue" 
+                        change.trigger="lengthInputValueChanged()">
+            </length-input>
+            <p>${lengthInputValue}</p>
+          </div>
+          <div class="col-sm-3">
+            <date-input label="Date-Input:"
+                        value.two-way="dateInputValue" 
+                        change.trigger="dateInputValueChanged()">
+            </date-input>
+            <p>${dateInputValue}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <combo-input label="Combo-Input:"
+                          value.bind="selectedWoodType"
+                          options.bind="woodTypesOptions"
+                          callback.call="woodTypeChanged(newValue)">
+            </combo-input>
+            <p>${selectedWoodType}</p>
+          </div>
+          <div class="col-sm-3">
+            <dropdown-input label="Dropdown-Input:"
+                          value.bind="selectedOpeningType.value"
+                          options.bind="openingOptions"
+                          callback.call="openingChanged(newValue)">
+            </dropdown-input>
+            <p>${selectedOpeningType.label}</p>
+          </div>
+        </div>
+        <div class="row">
+          <button type="button" class="btn btn-primary mr-1" click.trigger="testToastr()">Test Toastr</button>
+          <button type="button" class="btn btn-primary mr-1" click.trigger="testYesNoDialog()">Test YesNo</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-2">
+
+      <h5>Opening Types</h5>
+      <ul>
+        <li repeat.for="openingType of openingTypes">${openingType.value}</li>
+      </ul>
+      <h5>Selected Opening Type = ${selectedOpeningType.label}</h5>
+      <table>
+        <thead>
+          <tr>
+            <td>Id</td>
+            <td>Desc</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr repeat.for="option of slatOptions">
+            <td>${option.id}</td>
+            <td>${option.desc}</td>
+          </tr>
+        </tbody>  
+      </table>
+      <h5>Jobs</h5>
+      <table>
+        <thead>
+          <tr>
+            <td>Id</td>
+            <td>Job Number</td>
+            <td>Job Name</td>
+            <td>Paint?</td>
+          </tr>
+        </thead>
+        <tbody>
+          <template repeat.for="job of jobs">
+            <tr if.bind="job.jobNumber.length > 0">
+              <td>${job.id}</td>
+              <td>${job.jobNumber}</td>
+              <td>${job.jobName}</td>
+              <td>${job.paint}</td>
+            </tr>
+            </template>
+        </tbody>  
+      </table>
+      <h5>Wood Types</h5>
+      <table>
+        <thead>
+          <tr>
+            <td>Id</td>
+            <td>Value</td>
+            <td>Deleted</td>
+          </tr>
+        </thead>
+        <tbody>
+          <template repeat.for="wood of woodTypes">
+            <tr>
+              <td>${wood.id}</td>
+              <td>${wood.value}</td>
+              <td>${wood.hide}</td>
+            </tr>
+            </template>
+        </tbody>  
+      </table>
+      <h5>Selected Wood Type = ${selectedWoodType}</h5>
+
+      <h5>Job Names</h5>
+      <table>
+        <thead>
+          <tr>
+            <td>Id</td>
+            <td>Value</td>
+            <td>Deleted</td>
+          </tr>
+        </thead>
+        <tbody>
+          <template repeat.for="jobName of jobNames">
+            <tr>
+              <td>${jobName.id}</td>
+              <td>${jobName.value}</td>
+              <td>${jobName.hide}</td>
+            </tr>
+            </template>
+        </tbody>  
+      </table>
+    </div>
+  </section>
+</template>
